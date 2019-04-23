@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Strict Mode</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	// 严格模式通过在脚本或函数的头部添加 "use strict"; 表达式来声明。
+	
+	// 一些feature：
+	// 不允许删除变量或对象, 不允许使用未声明的变量(隐式全局变量)，禁止this关键字指向全局对象，不允许对只读属性赋值
+
+	testStrictMode();
+	// Strict Mode
+	function testStrictMode() {
+		"use strict";
+		x = 1; // Error, since x is not defined
+		console.log(x);
+	}
+</script>
+</body>
+</html>

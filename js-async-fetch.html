@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Async Fetch</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	
+
+	// 1. Call back
+	function task1(callback) {
+		console.log("This is task 1");
+
+		callback && callback();
+	}
+
+	function task2(callback) {
+		console.log("This is task 2");
+		callback && callback();
+	}
+
+	function task3(callback) {
+		console.log("This is task 3");
+		callback && callback();
+	}
+
+	// output, 1, 2, 3
+	task1(function() {
+		task2(function() {
+			task3();
+		});
+	});
+
+
+
+	// 2. Promise
+	function fetchWithPromise(param) {
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				console.log("fetchWithPromise" + param);
+				resolve();
+			}, 100);
+		});
+	}
+
+	fetchWithPromise("task1")
+	.then(() => {
+		return fetchWithPromise("task2");
+	})
+	.then(() => {
+		return fetchWithPromise("task3");
+	});
+
+
+
+	// 3. Async / Await
+	async function fetchAllTasks() {
+		await fetchWithPromise("task1");
+		await fetchWithPromise("task2");
+		await fetchWithPromise("task3");
+	}
+
+	fetchAllTasks();
+
+
+
+	// 4. Application, 给一个array（长度不固定），按顺序fetch每一项
+	let arr = ['url1', 'url2', 'url3', 'url4'];
+	async function fetchByOrder(arr) {
+		let i = 0; let len = arr.length;
+		while(i < len) {
+			await fetchWithPromise(arr[i]);
+			i++;
+		}
+	}
+
+	fetchByOrder(arr);
+
+</script>
+</body>
+</html>

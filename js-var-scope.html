@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Scope</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	
+	// 定义变量时有无 var 声明的区别
+	// 不加 var 定义的就成了全局变量，在全局作用域下，使用 var 定义的变量不可以被delete
+	// 不加var时，实际上定义的是一个全局对象的属性，因为属性可以通过 delete 删除而变量不可以，所以用var定义的全局变量不会被delete
+
+	var a = 1;
+
+	function func() {
+		b = 2;
+
+	}
+	func();
+
+	console.log(b); // 2
+	delete a;
+	delete b;
+	console.log(a); // 1
+	console.log(b); // Error: b is not defined
+	
+
+</script>
+</body>
+</html>

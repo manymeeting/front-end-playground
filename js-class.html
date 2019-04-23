@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Class</title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+	// class类型为function，但写的时候不加()
+
+	class MyClass {
+		// 成员属性不加var或者let，直接写
+		val = 0;
+
+		// class中的成员方法定义时不加function，作用相当于直接定义在prototype上
+		constructor(a, b) {
+			this.a = a;
+			this.b = b;
+		}
+
+		static doStatic(param) {
+			console.log("Doing static " + param);
+		}
+
+		updateVal() {
+			this.val = this.a + this.b;
+		}
+
+		getVal() {
+			return this.val;
+		}
+
+		doA() {
+			console.log("Doing A: " + this.a);
+		}
+
+	}
+
+	class MySubClass extends MyClass {
+
+	}
+
+	let myObj1 = new MyClass("a1", "b1");
+	myObj1.doA();
+	myObj1.updateVal();
+	console.log(myObj1.getVal());
+	
+	MyClass.doStatic("MyClass");
+
+	MySubClass.doStatic("MySubClass"); // class可以继承父类的static方法
+
+	let myObj2 = new MySubClass();
+
+
+</script>
+</body>
+</html>

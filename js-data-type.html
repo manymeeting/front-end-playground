@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Strict Mode</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	
+	// javascript 六种数据类型以及特殊注意点
+
+
+	// typeof 的注意点
+	console.log("typeof 的注意点");
+	console.log(typeof null);    // 返回 object  
+	function demo(){  
+	    console.log('demo');  
+	}  
+	console.log(typeof demo);     // 返回  function 
+
+
+
+	// undefined 和 null 的区别和注意点
+	console.log("undefined 和 null 的区别和注意点");
+	// 如果用 “==” 进行比较，他们是相等的，因为比较的是值
+	// 可以使用 typeof 将他们区分开，或使用全等 “===” 
+	console.log(undefined == null);             //true  
+	console.log(typeof undefined == typeof null); //false  
+	console.log(undefined === null);             //true  
+
+
+
+	// Boolean 的注意点
+	console.log("Boolean 的注意点");
+	// 1）String 类型，只要不是 空字符串 都会 转换成 true
+	// 2）Number 类型，只要不是 0 ，即使是 负数，都会转换成 true
+	// 3) Object 类型，只要 不是 null 类型，都会转换成 true
+	// 4）Undefined 类型，都会转换成 false
+	testBooleanConvert();
+	function testBooleanConvert() {
+		let a = -1;
+		if(a) {
+			console.log("a is true");
+		}
+	}
+
+	
+
+	// Number 类型注意点
+	console.log("Number 类型注意点");
+	// float 类型 不能做精准运算
+	console.log(0.1+0.2);// 返回 0.300000000000000004，可以用toPrecision(9)来解决
+	// NaN（Not a Number）
+	var d=0/0; //注意：在js里是不会报错的，而是返回 NaN
+	console.log(d);
+	console.log(isNaN('123'));//false: 因为 字符串类型 的数字 可以自动转换成  数字  
+	// isNaN()内部执行原理：首相调用对象的 valueOf()方法，如果能转换成数字就直接做判断；如果不能就再调用 toString()方法，然后测试返回值。
+	
+
+
+
+
+</script>
+</body>
+</html>
