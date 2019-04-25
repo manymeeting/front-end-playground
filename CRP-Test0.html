@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS CSS Execute Order</title>
+	<link rel="stylesheet" type="text/css" href="css/CRP-Test0.css">
+</head>
+<body>
+
+	<script type="text/javascript">
+		document.getElementById("testDiv").style.color = "white"; // Error, cannot find DOM element, because this line will be executed before testDiv DOM is parsed  
+	</script>
+	<div id="testDiv">
+		Test Content
+	</div>
+	<script type="text/javascript">
+		// debug模式下，执行此行前bg为black，说明css先被加载
+		document.getElementById("testDiv").style.backgroundColor = "yellow"; 
+	</script>
+</body>
+</html>
