@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Closure</title>
+</head>
+<body>
+<script type="text/javascript">
+	
+// Closure与函数作用域	
+// 问题：会print五个5，因为 setTimeout 中的 i 是对外层 i 的引用
+for (var i = 0; i < 5; i++) {
+  setTimeout(function () {
+    console.log(i);
+  }, 5);
+}
+
+// 两个方案思路一样，都是解除setTimeout的callback中对i的引用。在callback里加参数，这个参数的作用域就只是callback函数内部
+// 解决方案-1：
+for (var i = 0; i < 5; i++) {
+
+	let func = function(x) {
+		console.log(x);
+	};
+
+	setTimeout(func, 100, i); // 在添加setTimout任务时把参数设为当前i的值
+}
+
+// 解决方案-2：
+for (var i = 0; i < 5; i++) {
+
+	(function(x) {
+		setTimeout(function() {
+			console.log(x);	
+		}, 100);
+	})(i); // 直接调用匿名函数，同时传入当前i的值
+}
+
+
+
+</script>
+</body>
+</html>
