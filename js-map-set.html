@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Map and Set</title>
+</head>
+<body>
+<script type="text/javascript">
+	
+	// map中，各种类型的值（包括对象）都可以当作键
+	let myMap1 = new Map();
+	myMap1.set("a", 1);
+	myMap1.set("b", 2);
+	myMap1.set(3, "c");
+	myMap1.forEach((val, key) => { // map的forEach参数中，val在前key在后
+		console.log(`Key: ${key}, Val: ${val}`);
+	});
+
+	let mySet1 = new Set();
+	mySet1.add("a").add("b").add("c"); // add返回对象本身，可以连续调用
+	for(let val of mySet1.values()) {  // for of 遍历
+		console.log(`Set Element: ${val}`);
+	}
+
+</script>
+</body>
+</html>
